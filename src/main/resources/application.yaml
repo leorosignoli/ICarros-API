@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: ICarros Demo
+
+
+service:
+  properties:
+    enabled-validations:
+      min-length: true
+      one-digit: true
+      one-upper: true
+      one-lower: true
+      one-special-char: true
+      repeated-chars: true
+
+
+
+

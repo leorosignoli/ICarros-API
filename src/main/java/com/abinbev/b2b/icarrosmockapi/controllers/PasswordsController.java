@@ -8,8 +8,8 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 
 public interface PasswordsController {
 
@@ -18,12 +18,12 @@ public interface PasswordsController {
       description =
           """
             Returns `true` if the password is valid according to the following business rules:
-            - At least 9 characters
-            - At least 1 digit
-            - At least 1 lowercase letter
-            - At least 1 uppercase letter
-            - At least 1 special character from the set: !@#$%^&*()-+
-            - No repeated characters
+                - At least 9 characters
+                - At least 1 digit
+                - At least 1 lowercase letter
+                - At least 1 uppercase letter
+                - At least 1 special character from the set: !@#$%^&*()-+
+                - No repeated characters
             """)
   @ApiResponses(
       value = {
@@ -44,6 +44,6 @@ public interface PasswordsController {
         @ApiResponse(responseCode = "400", description = "Invalid password format")
       })
   ResponseEntity<ValidatePasswordResponseDTO> validatePassword(
-      @Parameter(description = "The password to be validated.", required = true) @PathVariable
+      @Parameter(description = "The password to be validated.", required = true) @NotBlank
           final String password);
 }

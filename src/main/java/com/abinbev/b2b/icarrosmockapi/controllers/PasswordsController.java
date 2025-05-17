@@ -1,24 +1,49 @@
 package com.abinbev.b2b.icarrosmockapi.controllers;
 
-import com.abinbev.b2b.icarrosmockapi.services.PasswordService;
+import com.abinbev.b2b.icarrosmockapi.controllers.dtos.ValidatePasswordResponseDTO;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("/passwords")
-class PasswordsController {
+public interface PasswordsController {
 
-    private final PasswordService passwordService;
-
-    public PasswordsController(PasswordService passwordService) {
-        this.passwordService = passwordService;
-    }
-
-    @PostMapping("/validate/{password}")
-    public Boolean validatePassword(@PathVariable final String password) {
-
-        return passwordService.isValidPassword(password);
-    }
+  @Operation(
+      summary = "Validate a password",
+      description =
+          """
+            Returns `true` if the password is valid according to the following business rules:
+            - At least 9 characters
+            - At least 1 digit
+            - At least 1 lowercase letter
+            - At least 1 uppercase letter
+            - At least 1 special character from the set: !@#$%^&*()-+
+            - No repeated characters
+            """)
+  @ApiResponses(
+      value = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "Password validation result",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ValidatePasswordResponseDTO.class),
+                    examples = {
+                      @ExampleObject(name = "ValidPassword", value = "{\"isValid\": true}"),
+                      @ExampleObject(
+                          name = "InvalidPassword",
+                          value =
+                              "{\"isValid\": false, \"errors\": [\"Password must contain at least one digit\", \"Password must not contain repeated characters\"]}")
+                    })),
+        @ApiResponse(responseCode = "400", description = "Invalid password format")
+      })
+  ResponseEntity<ValidatePasswordResponseDTO> validatePassword(
+      @Parameter(description = "The password to be validated.", required = true) @PathVariable
+          final String password);
 }

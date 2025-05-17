@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/passwords")
 class PasswordsControllerImpl implements PasswordsController {
-  
+
   private final PasswordService passwordService;
 
   public PasswordsControllerImpl(PasswordService passwordService) {
@@ -25,8 +25,10 @@ class PasswordsControllerImpl implements PasswordsController {
 
     final ValidatePasswordResponseDTO response = passwordService.isValidPassword(password);
 
-    return response.isValid()
-        ? ResponseEntity.ok(response)
-        : ResponseEntity.badRequest().body(response);
+    if (response.isValid()) {
+      return ResponseEntity.ok(response);
+    } else {
+      return ResponseEntity.badRequest().body(response);
+    }
   }
 }

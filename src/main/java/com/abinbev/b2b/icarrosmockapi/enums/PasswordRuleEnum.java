@@ -62,9 +62,9 @@ public enum PasswordRuleEnum {
 
   static final class Patterns {
 
-    public static final Pattern DIGIT = Pattern.compile("\\d");
-    public static final Pattern LOWER = Pattern.compile("[a-z]");
-    public static final Pattern UPPER = Pattern.compile("[A-Z]");
+    public static final Pattern DIGIT = Pattern.compile("\\p{Nd}");
+    public static final Pattern LOWER = Pattern.compile("\\p{Ll}");
+    public static final Pattern UPPER = Pattern.compile("\\p{Lu}");
     public static final Pattern SPECIAL = Pattern.compile("[!@#$%^&*()\\-+]");
 
     private Patterns() {}

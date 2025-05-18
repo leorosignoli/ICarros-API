@@ -3,14 +3,17 @@ package com.abinbev.b2b.icarrosmockapi.controllers;
 import com.abinbev.b2b.icarrosmockapi.controllers.dtos.ValidatePasswordResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.http.ResponseEntity;
 
+@Tag(name = "Passwords API", description = "Operations related to password")
 public interface PasswordsController {
 
   @Operation(
@@ -24,7 +27,15 @@ public interface PasswordsController {
                 - At least 1 uppercase letter
                 - At least 1 special character from the set: !@#$%^&*()-+
                 - No repeated characters
-            """)
+            """,
+      parameters = {
+        @Parameter(
+            name = "traceId",
+            description = "Optional trace ID for request tracking",
+            in = ParameterIn.HEADER,
+            required = false,
+            example = "testHeader")
+      })
   @ApiResponses(
       value = {
         @ApiResponse(

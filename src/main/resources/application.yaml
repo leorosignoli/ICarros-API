@@ -2,7 +2,6 @@ spring:
   application:
     name: ICarros Demo
 
-
 password:
   validation:
     enabled-validations:
@@ -13,7 +12,3 @@ password:
       ONE_SPECIAL_CHAR: true
       REPEATED_CHARS: true
       NO_EXTRAORDINARY_CHARS: true
-
-
-
-

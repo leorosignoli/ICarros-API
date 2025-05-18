@@ -7,20 +7,15 @@ import com.abinbev.b2b.icarrosmockapi.enums.PasswordRuleEnum;
 import com.abinbev.b2b.icarrosmockapi.properties.PasswordValidationProperties;
 import java.util.List;
 import java.util.Set;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PasswordServiceImpl implements PasswordService {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(PasswordServiceImpl.class);
   private final List<PasswordRuleEnum> enabledValidations;
 
   PasswordServiceImpl(final PasswordValidationProperties passwordValidationProperties) {
 
-    LOGGER.debug("Enabled password validations are: {}", passwordValidationProperties.getEnableValidations());
     enabledValidations =
         passwordValidationProperties.getEnableValidations().stream()
             .map(PasswordRuleEnum::valueOf)

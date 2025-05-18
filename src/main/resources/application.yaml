@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: ICarros Demo
+
+password:
+  validation:
+    enabled-validations:
+      MIN_LENGTH: true
+      ONE_DIGIT: true
+      ONE_UPPERCASE: true
+      ONE_LOWERCASE: true
+      ONE_SPECIAL_CHAR: true
+      REPEATED_CHARS: true
+      NO_EXTRAORDINARY_CHARS: true

@@ -3,16 +3,16 @@ spring:
     name: ICarros Demo
 
 
-service:
-  properties:
+password:
+  validation:
     enabled-validations:
-      min-length: true
-      one-digit: true
-      one-upper: true
-      one-lower: true
-      one-special-char: true
-      repeated-chars: true
-      no-extraordinary-chars: true
+      MIN_LENGTH: true
+      ONE_DIGIT: true
+      ONE_UPPERCASE: true
+      ONE_LOWERCASE: true
+      ONE_SPECIAL_CHAR: true
+      REPEATED_CHARS: true
+      NO_EXTRAORDINARY_CHARS: true
 
 
 

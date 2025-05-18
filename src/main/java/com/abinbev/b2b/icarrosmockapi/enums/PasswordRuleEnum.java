@@ -69,9 +69,8 @@ public enum PasswordRuleEnum {
     public static final Pattern LOWER = Pattern.compile("\\p{Ll}");
     public static final Pattern UPPER = Pattern.compile("\\p{Lu}");
     public static final Pattern SPECIAL = Pattern.compile("[!@#$%^&*()\\-+]");
-    public static final Pattern ANY = Pattern.compile("[^\\p{Nd}\\p{Ll}\\p{Lu}!@#$%^&*()\\-+]",
-            Pattern.UNICODE_CHARACTER_CLASS);
-
+    public static final Pattern ANY =
+        Pattern.compile("[^\\p{Nd}\\p{Ll}\\p{Lu}!@#$%^&*()\\-+]", Pattern.UNICODE_CHARACTER_CLASS);
 
     private Patterns() {}
   }

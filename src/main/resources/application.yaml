@@ -12,6 +12,7 @@ service:
       one-lower: true
       one-special-char: true
       repeated-chars: true
+      no-extraordinary-chars: true
 
 
 

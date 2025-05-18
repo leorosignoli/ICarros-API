@@ -25,6 +25,6 @@ class PasswordServiceImpl implements PasswordService {
   }
 
   private static List<PasswordRuleEnum> getEnabledValidations() {
-    return Arrays.stream(PasswordRuleEnum.values()).toList();
+    return Arrays.asList(PasswordRuleEnum.values());
   }
 }

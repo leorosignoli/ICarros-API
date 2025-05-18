@@ -12,6 +12,8 @@ public final class ServiceConstants {
       "Password must contain at least one special character from the set: !@#$%^&*()-+";
   public static final String NO_REPEATED_CHARACTERS =
       "Password must not contain repeated characters";
+  public static final String NO_EXTRAORDINARY_CHARACTERS =
+      "Password should contain only !@#$%^&*( as special chars";
 
   private ServiceConstants() {}
 }

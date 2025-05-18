@@ -5,6 +5,7 @@ import static com.abinbev.b2b.icarrosmockapi.constants.ServiceConstants.AT_LEAST
 import static com.abinbev.b2b.icarrosmockapi.constants.ServiceConstants.AT_LEAST_ONE_SPECIAL_CHAR;
 import static com.abinbev.b2b.icarrosmockapi.constants.ServiceConstants.AT_LEAST_ONE_UPPERCASE;
 import static com.abinbev.b2b.icarrosmockapi.constants.ServiceConstants.NINE_CHARS_LONG;
+import static com.abinbev.b2b.icarrosmockapi.constants.ServiceConstants.NO_EXTRAORDINARY_CHARACTERS;
 import static com.abinbev.b2b.icarrosmockapi.constants.ServiceConstants.NO_REPEATED_CHARACTERS;
 
 import java.util.HashSet;
@@ -23,7 +24,9 @@ public enum PasswordRuleEnum {
 
   ONE_SPECIAL_CHAR(AT_LEAST_ONE_SPECIAL_CHAR, pwd -> !Patterns.SPECIAL.matcher(pwd).find()),
 
-  REPEATED_CHARS(NO_REPEATED_CHARACTERS, validateRepeatedCharacters());
+  REPEATED_CHARS(NO_REPEATED_CHARACTERS, validateRepeatedCharacters()),
+
+  NO_EXTRAORDINARY_CHARS(NO_EXTRAORDINARY_CHARACTERS, pwd -> Patterns.ANY.matcher(pwd).find());
 
   public static final int PASSWORD_MIN_LENGTH = 9;
 
@@ -66,6 +69,9 @@ public enum PasswordRuleEnum {
     public static final Pattern LOWER = Pattern.compile("\\p{Ll}");
     public static final Pattern UPPER = Pattern.compile("\\p{Lu}");
     public static final Pattern SPECIAL = Pattern.compile("[!@#$%^&*()\\-+]");
+    public static final Pattern ANY = Pattern.compile("[^\\p{Nd}\\p{Ll}\\p{Lu}!@#$%^&*()\\-+]",
+            Pattern.UNICODE_CHARACTER_CLASS);
+
 
     private Patterns() {}
   }

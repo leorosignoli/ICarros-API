@@ -14,7 +14,7 @@ public class PasswordServiceImpl implements PasswordService {
 
   private final List<PasswordRuleEnum> enabledValidations;
 
-  PasswordServiceImpl(final PasswordValidationProperties passwordValidationProperties) {
+  public PasswordServiceImpl(final PasswordValidationProperties passwordValidationProperties) {
 
     enabledValidations =
         passwordValidationProperties.getEnableValidations().stream()
@@ -23,7 +23,7 @@ public class PasswordServiceImpl implements PasswordService {
   }
 
   @Override
-  public ValidatePasswordResponseDTO isValidPassword(final String password) {
+  public ValidatePasswordResponseDTO validatePassword(final String password) {
 
     final Set<String> errors =
         enabledValidations.stream()

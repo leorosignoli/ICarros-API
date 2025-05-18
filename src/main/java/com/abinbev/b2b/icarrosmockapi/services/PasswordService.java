@@ -4,5 +4,5 @@ import com.abinbev.b2b.icarrosmockapi.controllers.dtos.ValidatePasswordResponseD
 
 public interface PasswordService {
 
-  ValidatePasswordResponseDTO isValidPassword(final String password);
+  ValidatePasswordResponseDTO validatePassword(final String password);
 }

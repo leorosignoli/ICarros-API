@@ -27,7 +27,8 @@ class PasswordsControllerImpl implements PasswordsController {
   public ResponseEntity<ValidatePasswordResponseDTO> validatePassword(
       @PathVariable @NotBlank final String password) {
 
-    final ValidatePasswordResponseDTO response = passwordService.isValidPassword(password);
+    LOGGER.info(LogConstants.RECEIVED_REQUEST);
+    final ValidatePasswordResponseDTO response = passwordService.validatePassword(password);
 
     if (response.isValid()) {
       LOGGER.info(LogConstants.PASSWORD_VALIDATED_SUCCESSFULLY);

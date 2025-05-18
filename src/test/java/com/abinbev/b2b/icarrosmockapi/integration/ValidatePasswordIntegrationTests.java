@@ -49,11 +49,9 @@ class ValidatePasswordIntegrationTests {
         "Abcdef1",
         "Abcdef1@",
         "12345678",
-              "Abc 1234!."
+        "Abc 1234!."
       })
-  void shouldReturnInvalidWhenPasswordIsIncorrect() {
-
-    String invalidPassword = "Ab1!";
+  void shouldReturnInvalidWhenPasswordIsIncorrect(String invalidPassword) {
 
     ResponseEntity<ValidatePasswordResponseDTO> response =
         restTemplate.postForEntity(

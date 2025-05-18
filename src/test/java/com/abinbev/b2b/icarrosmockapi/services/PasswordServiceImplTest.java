@@ -31,7 +31,7 @@ class PasswordServiceImplTest {
     passwordService = new PasswordServiceImpl(passwordValidationProperties);
 
     String validPassword = "Aa1@abcde";
-    ValidatePasswordResponseDTO response = passwordService.isValidPassword(validPassword);
+    ValidatePasswordResponseDTO response = passwordService.validatePassword(validPassword);
 
     assertThat(response.isValid()).isTrue();
     assertThat(response.errors()).isEmpty();
@@ -44,7 +44,7 @@ class PasswordServiceImplTest {
     passwordService = new PasswordServiceImpl(passwordValidationProperties);
 
     String shortPassword = "A1@a";
-    ValidatePasswordResponseDTO response = passwordService.isValidPassword(shortPassword);
+    ValidatePasswordResponseDTO response = passwordService.validatePassword(shortPassword);
 
     assertThat(response.isValid()).isFalse();
     assertThat(response.errors()).containsExactly(NINE_CHARS_LONG);
@@ -57,7 +57,7 @@ class PasswordServiceImplTest {
     passwordService = new PasswordServiceImpl(passwordValidationProperties);
 
     String noDigitPassword = "Password@";
-    ValidatePasswordResponseDTO response = passwordService.isValidPassword(noDigitPassword);
+    ValidatePasswordResponseDTO response = passwordService.validatePassword(noDigitPassword);
 
     assertThat(response.isValid()).isFalse();
     assertThat(response.errors()).containsExactly(AT_LEAST_ONE_DIGIT);
@@ -71,7 +71,7 @@ class PasswordServiceImplTest {
     passwordService = new PasswordServiceImpl(passwordValidationProperties);
 
     String badPassword = "abc";
-    ValidatePasswordResponseDTO response = passwordService.isValidPassword(badPassword);
+    ValidatePasswordResponseDTO response = passwordService.validatePassword(badPassword);
 
     assertThat(response.isValid()).isFalse();
     assertThat(response.errors())
@@ -86,7 +86,7 @@ class PasswordServiceImplTest {
     passwordService = new PasswordServiceImpl(passwordValidationProperties);
 
     String simplePassword = "Simple123!";
-    ValidatePasswordResponseDTO response = passwordService.isValidPassword(simplePassword);
+    ValidatePasswordResponseDTO response = passwordService.validatePassword(simplePassword);
 
     assertThat(response.isValid()).isTrue();
     assertThat(response.errors()).isEmpty();
@@ -99,7 +99,7 @@ class PasswordServiceImplTest {
     passwordService = new PasswordServiceImpl(passwordValidationProperties);
 
     String repeatedCharsPassword = "aaaBBB123!";
-    ValidatePasswordResponseDTO response = passwordService.isValidPassword(repeatedCharsPassword);
+    ValidatePasswordResponseDTO response = passwordService.validatePassword(repeatedCharsPassword);
 
     assertThat(response.isValid()).isFalse();
     assertThat(response.errors()).containsExactly(NO_REPEATED_CHARACTERS);

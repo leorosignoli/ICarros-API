@@ -1,4 +1,4 @@
-package com.abinbev.b2b.icarrosmockapi.enums;
+package com.abinbev.b2b.icarrosmockapi.services;
 
 import static com.abinbev.b2b.icarrosmockapi.constants.ServiceConstants.AT_LEAST_ONE_DIGIT;
 import static com.abinbev.b2b.icarrosmockapi.constants.ServiceConstants.AT_LEAST_ONE_LOWERCASE;
@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
-public enum PasswordRuleEnum {
+public enum PasswordRules {
   MIN_LENGTH(NINE_CHARS_LONG, minLength()),
 
   ONE_DIGIT(AT_LEAST_ONE_DIGIT, (String pwd) -> !Patterns.DIGIT.matcher(pwd).find()),
@@ -33,7 +33,7 @@ public enum PasswordRuleEnum {
   private final String errorMessage;
   private final Predicate<String> invalidPredicate;
 
-  PasswordRuleEnum(String errorMessage, Predicate<String> invalidPredicate) {
+  PasswordRules(String errorMessage, Predicate<String> invalidPredicate) {
     this.errorMessage = errorMessage;
     this.invalidPredicate = invalidPredicate;
   }
